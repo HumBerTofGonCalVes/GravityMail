@@ -7,6 +7,52 @@ class PlansService {
         this.Plan = Database.Plan;
     }
 
+    async getById(id) {
+        try {
+            return await this.Plan.findByPk(id);
+        } catch (error) {
+            return undefined;
+        }
+    }
+
+    async update(id, data) {
+        let errors = {};
+
+        if (data.import != undefined) {
+            data.import = true;
+        } else {
+            data.import = false;
+        }
+
+        let isValid = this.validate(data, errors);
+
+        if (isValid) {
+            try {
+                let plan = await this.getById(id);
+                plan.title = data.title;
+                plan.list = data.list;
+                plan.client = data.client;
+                plan.value = data.value;
+                plan.import = data.import;
+                await plan.save();
+                return true;
+            } catch (error) {
+                errors.system_msg = "Não foi possível modificar o plano!: " + error;
+                return errors;
+            }
+        } else {
+            return errors;
+        }
+    }
+
+    async getAll() {
+        try {
+            return await this.Plan.findAll();
+        } catch (error) {
+            return undefined;
+        }
+    }
+
     async store(plans) {
         let errors = {};
 

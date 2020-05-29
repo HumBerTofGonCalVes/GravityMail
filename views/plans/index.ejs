@@ -1,10 +1,28 @@
-<%- include ("partials/header.ejs") %>
-<%- include ("partials/homenavbar.ejs") %>
+<%- include ("../partials/header.ejs") %>
+<%- include ("../partials/homenavbar.ejs") %>
 
 <body>
     <div class="container">
-
+        <h2 class="mt-5">Listagem dos planos</h2>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% plans.forEach( plan => { %>
+                <tr>
+                    <td><%= plan.id %></td>
+                    <td><%= plan.title %></td>
+                    <td><%= plan.value %> €</td>
+                </tr>
+                <% } ) %>
+            </tbody>
+        </table>
     </div>
 </body>
 
-<%- include ("partials/footer.ejs") %>
+<%- include ("../partials/footer.ejs") %>
