@@ -15,6 +15,28 @@ class PlansService {
         }
     }
 
+    async deactivate(id) {
+        try {
+            let plan = await this.getById(id);
+            plan.deactivated = true;
+            await plan.save();
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async activate(id) {
+        try {
+            let plan = await this.getById(id);
+            plan.deactivated = false;
+            await plan.save();
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
     async update(id, data) {
         let errors = {};
 
