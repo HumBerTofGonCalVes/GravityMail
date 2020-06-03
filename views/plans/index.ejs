@@ -4,24 +4,24 @@
 <body>
     <div class="container">
         <h2 class="mt-5">Listagem dos planos</h2>
-        <table class="table mt-4">
-            <thead>
+        <table class="table mt-4 table-bordered">
+            <thead class="thead-light">
                 <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Desativado?</th>
-                    <th>Ações</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">Preço</th>
+                    <th class="text-center">Desativado?</th>
+                    <th class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <% plans.forEach( plan => { %>
                 <tr>
-                    <td><%= plan.id %></td>
-                    <td><%= plan.title %></td>
-                    <td><%= plan.value %> €</td>
-                    <td><%= plan.deactivated %></td>
-                    <td><a href="/plans/deactivate/<%= plan.id %>">Desativar</a> || <a
+                    <td class="text-center"><%= plan.id %></td>
+                    <td class="text-center"><%= plan.title %></td>
+                    <td class="text-center"><%= plan.value %> €</td>
+                    <td class="text-center"><%= plan.deactivated %></td>
+                    <td class="text-center"><a href="/plans/deactivate/<%= plan.id %>">Desativar</a> || <a
                             href="/plans/activate/<%= plan.id %>">Ativar</a></td>
                 </tr>
                 <% } ) %>
